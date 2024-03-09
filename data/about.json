@@ -1,0 +1,15 @@
+{
+  "items": [
+    {
+      "text": "Even as a teenager, I was interested in computers, or more precisely, computer games, and I was interested in how it all worked. At university I tried myself as a web developer and since then I have been diving further and further into the rabbit hole of programming and web technologies. Fast-forward to today, and I`ve had the privilege of building software for a <link>big company<link>",
+      "links": ["https://www.onlyoffice.com/"]
+    },
+    {
+      "text": "My main focus these days is developing our <link>ONLYOFFICE DocSpace<link> project. I most enjoy building software in the sweet spot where design and engineering meet — things that look good but are also built well under the hood - but lately I've been more focused on optimizing existing code and improving the quality of code.",
+      "links": ["https://github.com/ONLYOFFICE/DocSpace"]
+    },
+    {
+      "text": "When I'm not on the computer, I usually go to the gym, hang out with my wife and kid, chase goblins around the screen trying to get R1 in World of Warcraft"
+    }
+  ]
+}

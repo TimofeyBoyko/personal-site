@@ -1,0 +1,29 @@
+{
+  "items": [
+    {
+      "date": "2021 — Present",
+      "role": "Senior developer",
+      "company": "ONLYOFFICE",
+      "sub-roles": ["Developer"],
+      "link": "https://www.onlyoffice.com",
+      "description": "Build front-end of a cloud-based document management and collaboration solution that allows users to create, edit, and share documents in real time.Share skills and knowledge about project with colleagues. Also create Plugin SDK, that allow integrate third-party functionality into DocSpace.",
+      "tags": [
+        "JavaScript",
+        "TypeScript",
+        "HTML & SCSS",
+        "React",
+        "NextJS",
+        "Styled Components",
+        "Mobx",
+        "Jest",
+        "React Testing Library",
+        "Webpack",
+        "Nodejs"
+      ],
+      "links": {
+        "name": "ONLYOFFICE DocSpace",
+        "link": "https://www.onlyoffice.com/docspace.aspx"
+      }
+    }
+  ]
+}

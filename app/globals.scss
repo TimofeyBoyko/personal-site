@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.active {
+  .nav-indicator {
+    width: 4rem;
+    --tw-bg--opacity: 1;
+    background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+  }
+  .nav-text {
+    --tw-text-opacity: 1;
+    color: rgb(226 232 240 / var(--tw-text-opacity));
+  }
+}
+
+.custom-scrollbar__content {
+  scrollbar-width: none;
+}
+
+.custom-scrollbar__content::-webkit-scrollbar {
+  display: none;
+}
+
+.custom-scrollbar__track-and-thumb {
+  height: calc(100% - 16px);
+}
