@@ -21,7 +21,9 @@ function Cursor() {
     };
   }, [onCursorMove]);
 
-  return isMobile ? null : (
+  return isMobile ? (
+    <div></div>
+  ) : (
     <div
       id="cursor"
       ref={cursorElement}

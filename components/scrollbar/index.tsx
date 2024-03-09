@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { isMobile, isIOS } from "react-device-detect";
 
 function Scrollbar({ children }: { children: React.ReactNode }) {
   const contentRef = React.useRef<null | HTMLDivElement>(null);
@@ -148,10 +149,10 @@ function Scrollbar({ children }: { children: React.ReactNode }) {
   return (
     <div
       id="scrollbar"
-      className="custom-scrollbar__container relative max-h-screen overflow-hidden bg-transparent"
+      className="custom-scrollbar__container relative max-h-dvh overflow-hidden bg-transparent"
     >
       <div
-        className="custom-scrollbar__content max-h-screen overflow-auto"
+        className="custom-scrollbar__content max-h-dvh overflow-auto"
         ref={contentRef}
       >
         {children}
