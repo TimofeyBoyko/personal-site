@@ -9,6 +9,9 @@ import Scrollbar from "@/components/scrollbar";
 export const metadata: Metadata = {
   title: "Timofey Boyko",
   description: "Personal site for Timofey Boyko",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
