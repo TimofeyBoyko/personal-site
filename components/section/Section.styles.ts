@@ -8,9 +8,9 @@ export const sectionStyles = {
 
   // Header container styles - General and Breakpoints
   headerContainerGeneral:
-    "sticky top-0 z-20 -mx-6 mb-4 w-[calc(100vw-16px)] bg-slate-900/75 px-6 py-5 backdrop-blur",
+    "sticky top-0 z-20 mx-auto mb-4 w-full max-w-full bg-slate-900/75 px-6 py-5 backdrop-blur",
   headerContainerLg:
-    "lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-[calc(100vw-16px)] lg:px-0 lg:py-0 lg:opacity-0",
+    "lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0",
 
   // Header text styles - General and Breakpoints
   headerTextGeneral:

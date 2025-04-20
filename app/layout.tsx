@@ -47,10 +47,6 @@ export const metadata: Metadata = {
     description:
       "Timofey Boyko is a Frontend Developer with experience in React, NextJS, and frontend development.",
   },
-
-  // Appearance
-  themeColor: "#0f172a", // Slate-900 color
-  colorScheme: "dark light",
 };
 
 export default function RootLayout({

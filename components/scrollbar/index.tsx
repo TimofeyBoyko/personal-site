@@ -160,7 +160,9 @@ function Scrollbar({ children }: ScrollbarProps) {
         {children}
       </div>
       {!hideScroll && (
-        <div className={`custom-scrollbar__scrollbar ${scrollbarStyles.scrollbar}`}>
+        <div
+          className={`custom-scrollbar__scrollbar ${scrollbarStyles.scrollbar}`}
+        >
           <div
             className={`custom-scrollbar__track-and-thumb ${scrollbarStyles.trackAndThumb}`}
             style={{ ...trackAndThumbDragging }}

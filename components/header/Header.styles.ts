@@ -13,9 +13,9 @@ export const headerStyles = {
   },
 
   // Info component styles - General
-  infoTitleGeneral: "text-4xl font-bold tracking-tight text-slate-200",
-  infoSubtitleGeneral: "mt-3 text-lg font-medium tracking-tight text-slate-200",
-  infoDescriptionGeneral: "mt-4 max-w-xs leading-normal",
+  infoTitleGeneral: "text-4xl font-bold tracking-tight text-slate-200 select-none",
+  infoSubtitleGeneral: "mt-3 text-lg font-medium tracking-tight text-slate-200 select-none",
+  infoDescriptionGeneral: "mt-4 max-w-xs leading-normal select-none",
 
   // Info component styles - Breakpoints
   infoTitleLg: "lg:text-5xl",
@@ -45,9 +45,9 @@ export const headerStyles = {
   navigationIndicatorActiveState:
     "mr-4 h-px w-16 bg-slate-200 transition-all motion-reduce:transition-none",
   navigationTextGeneral:
-    "text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200",
+    "text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200 select-none",
   navigationTextActiveState:
-    "text-xs font-bold uppercase tracking-widest text-slate-200",
+    "text-xs font-bold uppercase tracking-widest text-slate-200 select-none",
 
   // Navigation styles - Breakpoints
   navigationContainerLg: "lg:block",
@@ -89,8 +89,8 @@ export const headerStyles = {
 
   // Social styles - General
   socialListGeneral: "ml-1 mt-8 flex items-center",
-  socialItemGeneral: "mr-5 shrink-0 text-xs",
-  socialLinkGeneral: "block hover:text-slate-200",
+  socialItemGeneral: "mr-5 shrink-0 text-xs select-none",
+  socialLinkGeneral: "block hover:text-slate-200 select-none",
 
   // Combined social styles
   get socialList() {

@@ -41,13 +41,13 @@ export const groupStyles = {
   },
 
   // Text styles
-  contentText: "mt-2 text-sm leading-normal",
+  contentText: "mt-2 text-sm leading-normal select-none",
 
   // Sub-component Styles
 
   // Header Styles
   headerBaseStyles:
-    "z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500",
+    "z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 select-none",
   headerHidden: "hidden",
   headerSm: "sm:col-span-2 sm:inline",
 
@@ -63,12 +63,12 @@ export const groupStyles = {
   },
 
   // Content Header Styles - general
-  contentHeaderMainGeneral: "font-medium leading-snug text-slate-200",
+  contentHeaderMainGeneral: "font-medium leading-snug text-slate-200 select-none",
   contentHeaderLinkGeneral:
-    "group/link inline-flex items-baseline text-base font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300",
+    "group/link inline-flex items-baseline text-base font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300 select-none",
   contentHeaderLinkSpanGeneral:
     "absolute -inset-x-4 -inset-y-2.5 hidden rounded",
-  contentSubHeaderGeneral: "text-slate-500",
+  contentSubHeaderGeneral: "text-slate-500 select-none",
 
   // Content Header Styles - device specific
   contentHeaderLinkSpanLg: "lg:-inset-x-6 lg:-inset-y-4 lg:block",
@@ -94,7 +94,7 @@ export const groupStyles = {
 
   // Tag styles
   tagGeneral:
-    "flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs leading-5 font-medium text-teal-300",
+    "flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs leading-5 font-medium text-teal-300 select-none",
   get tag() {
     return this.tagGeneral;
   },

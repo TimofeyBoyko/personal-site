@@ -4,13 +4,14 @@ export const scrollbarStyles = {
   containerGeneral: "relative max-h-dvh overflow-hidden bg-transparent",
 
   // Content styles - General
-  contentGeneral: "max-h-dvh overflow-auto scrollbar-none",
+  contentGeneral: "max-h-dvh overflow-auto [&::-webkit-scrollbar]:w-0 [scrollbar-width:none]",
 
   // Scrollbar styles - General
   scrollbarGeneral: "fixed top-0 right-1 h-full",
 
   // Track and thumb container styles - General
-  trackAndThumbGeneral: "relative w-1 py-2 opacity-30 hover:w-2 hover:opacity-100 h-[calc(100%-16px)]",
+  trackAndThumbGeneral:
+    "relative w-1 py-2 opacity-30 hover:w-2 hover:opacity-100 h-[calc(100%-16px)]",
 
   // Track styles - General
   trackGeneral: "absolute h-full w-full",
@@ -22,7 +23,7 @@ export const scrollbarStyles = {
   get container() {
     return this.containerGeneral;
   },
-  
+
   get content() {
     return this.contentGeneral;
   },
@@ -41,5 +42,5 @@ export const scrollbarStyles = {
 
   get thumb() {
     return this.thumbGeneral;
-  }
+  },
 };
