@@ -4,28 +4,28 @@ import React from "react";
 import { headerStyles } from "../Header.styles";
 import { NavigationItemType } from "../Header.types";
 
+const data = [
+  {
+    label: "about",
+    href: "#about",
+    isActive: true,
+  },
+  {
+    label: "experience",
+    href: "#experience",
+    isActive: false,
+  },
+  {
+    label: "projects",
+    href: "#projects",
+    isActive: false,
+  },
+];
+
 function Navigation() {
-  const [items, setItems] = React.useState<NavigationItemType[]>([]);
+  const [items, setItems] = React.useState<NavigationItemType[]>(data);
 
   React.useEffect(() => {
-    const data = [
-      {
-        label: "about",
-        href: "#about",
-        isActive: true,
-      },
-      {
-        label: "experience",
-        href: "#experience",
-        isActive: false,
-      },
-      {
-        label: "projects",
-        href: "#projects",
-        isActive: false,
-      },
-    ];
-
     const onScroll = () => {
       let alreadyActive = false;
 
@@ -75,16 +75,18 @@ function Navigation() {
                 data-testid={`nav-link-${item.label}`}
                 aria-current={item.isActive ? "page" : undefined}
               >
-                <span 
-                  className={item.isActive 
-                    ? headerStyles.navigationIndicatorActive 
-                    : headerStyles.navigationIndicator
-                  } 
+                <span
+                  className={
+                    item.isActive
+                      ? headerStyles.navigationIndicatorActive
+                      : headerStyles.navigationIndicator
+                  }
                 />
-                <span 
-                  className={item.isActive 
-                    ? headerStyles.navigationTextActive 
-                    : headerStyles.navigationText
+                <span
+                  className={
+                    item.isActive
+                      ? headerStyles.navigationTextActive
+                      : headerStyles.navigationText
                   }
                 >
                   {item.label}
