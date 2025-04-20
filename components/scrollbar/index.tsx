@@ -1,13 +1,15 @@
 "use client";
 
 import React from "react";
-import { isMobile, isIOS } from "react-device-detect";
 
-function Scrollbar({ children }: { children: React.ReactNode }) {
-  const contentRef = React.useRef<null | HTMLDivElement>(null);
-  const scrollTrackRef = React.useRef<null | HTMLDivElement>(null);
-  const scrollThumbRef = React.useRef<null | HTMLDivElement>(null);
-  const observer = React.useRef<ResizeObserver | null>(null);
+import { ScrollbarProps } from "./Scrollbar.types";
+import { scrollbarStyles } from "./Scrollbar.styles";
+
+function Scrollbar({ children }: ScrollbarProps) {
+  const contentRef = React.useRef<HTMLDivElement>(null);
+  const scrollTrackRef = React.useRef<HTMLDivElement>(null);
+  const scrollThumbRef = React.useRef<HTMLDivElement>(null);
+  const observer = React.useRef<ResizeObserver>(null);
 
   const [hideScroll, setHideScroll] = React.useState(false);
   const [thumbHeight, setThumbHeight] = React.useState(20);
@@ -149,28 +151,28 @@ function Scrollbar({ children }: { children: React.ReactNode }) {
   return (
     <div
       id="scrollbar"
-      className="custom-scrollbar__container relative max-h-dvh overflow-hidden bg-transparent"
+      className={`custom-scrollbar__container ${scrollbarStyles.container}`}
     >
       <div
-        className="custom-scrollbar__content max-h-dvh overflow-auto"
+        className={`custom-scrollbar__content ${scrollbarStyles.content}`}
         ref={contentRef}
       >
         {children}
       </div>
       {!hideScroll && (
-        <div className="custom-scrollbar__scrollbar fixed right-1 top-0 h-full">
+        <div className={`custom-scrollbar__scrollbar ${scrollbarStyles.scrollbar}`}>
           <div
-            className="custom-scrollbar__track-and-thumb relative w-1 py-2 opacity-30 hover:w-2 hover:opacity-100"
+            className={`custom-scrollbar__track-and-thumb ${scrollbarStyles.trackAndThumb}`}
             style={{ ...trackAndThumbDragging }}
           >
             <div
-              className="custom-scrollbar__track absolute h-full w-full "
+              className={`custom-scrollbar__track ${scrollbarStyles.track}`}
               ref={scrollTrackRef}
               onClick={handleTrackClick}
               style={{ cursor: isDragging ? "grabbing" : "pointer" }}
             ></div>
             <div
-              className="custom-scrollbar__thumb absolute w-full rounded-xl bg-slate-500"
+              className={`custom-scrollbar__thumb ${scrollbarStyles.thumb}`}
               ref={scrollThumbRef}
               onMouseDown={handleThumbMousedown}
               style={{

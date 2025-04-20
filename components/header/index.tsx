@@ -1,13 +1,15 @@
 import React from "react";
+import { headerStyles } from "./Header.styles";
+import { HeaderProps } from "./Header.types";
 
-import Info from "../header-info";
-import Navigation from "../header-navigation";
-import Social from "../header-social";
+import Info from "./sub-components/header-info";
+import Navigation from "./sub-components/header-navigation";
+import Social from "./sub-components/header-social";
 
-function Header({}: {}) {
+function Header({}: HeaderProps) {
   return (
-    <div className="py-12 tablet:sticky tablet:top-0 tablet:flex tablet:max-h-screen tablet:w-1/2 tablet:flex-col tablet:justify-between tablet:py-24">
-      <div>
+    <div className={headerStyles.container} data-testid="header-container">
+      <div data-testid="header-top-section">
         <Info />
         <Navigation />
       </div>

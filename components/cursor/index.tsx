@@ -1,16 +1,21 @@
 "use client";
 
 import React from "react";
-
 import { isMobile } from "react-device-detect";
 
-function Cursor() {
+import { cursorStyles } from "./Cursor.styles";
+import { CursorProps } from "./Cursor.types";
+
+function Cursor({}: CursorProps) {
   const cursorElement = React.useRef<null | HTMLDivElement>(null);
 
   const onCursorMove = React.useCallback((e: MouseEvent) => {
     if (!cursorElement.current) return;
 
-    cursorElement.current.style.background = `radial-gradient(600px at ${e.clientX}px ${e.clientY}px, rgba(29, 78, 216, 0.15) 0%, transparent 80%)`;
+    cursorElement.current.style.background = cursorStyles.getBackgroundStyle(
+      e.clientX,
+      e.clientY,
+    );
   }, []);
 
   React.useEffect(() => {
@@ -22,12 +27,13 @@ function Cursor() {
   }, [onCursorMove]);
 
   return isMobile ? (
-    <div></div>
+    <div />
   ) : (
     <div
       id="cursor"
+      data-testid="cursor"
       ref={cursorElement}
-      className="pointer-events-none fixed inset-0 z-30 transition duration-300 tablet:absolute"
+      className={cursorStyles.container}
     />
   );
 }

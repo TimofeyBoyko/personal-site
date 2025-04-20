@@ -1,16 +1,10 @@
 import React from "react";
-import SectionAbout from "../section-about";
-import SectionExperience from "../section-experience";
-import SectionProjects from "../section-projects";
 
-function Main() {
-  return (
-    <main className="pt-0 tablet:w-1/2 tablet:py-24">
-      <SectionAbout />
-      <SectionExperience />
-      <SectionProjects />
-    </main>
-  );
+import { mainStyles } from "./Main.styles";
+import { MainProps } from "./Main.types";
+
+function Main({ children }: MainProps) {
+  return <main className={mainStyles.container}>{children}</main>;
 }
 
 export default Main;

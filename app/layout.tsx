@@ -1,17 +1,56 @@
 import type { Metadata } from "next";
 
 import Cursor from "@/components/cursor";
-
-import "./globals.scss";
 import Layout from "@/components/layout";
 import Scrollbar from "@/components/scrollbar";
+import Header from "@/components/header";
+
+import { layoutStyles } from "./Layout.styles";
+import "./globals.scss";
 
 export const metadata: Metadata = {
-  title: "Timofey Boyko",
-  description: "Personal site for Timofey Boyko",
+  // Basic metadata
+  title: "Timofey Boyko | Frontend Developer",
+  description:
+    "Timofey Boyko is a Frontend Developer with experience in React, NextJS, and frontend development. Discover projects, experience, and skills.",
+  keywords: [
+    "Timofey Boyko",
+    "Frontend Developer",
+    "React",
+    "NextJS",
+    "Web Development",
+  ],
+  authors: [{ name: "Timofey Boyko" }],
+  creator: "Timofey Boyko",
+  publisher: "Timofey Boyko",
+
+  // Icons
   icons: {
     icon: "/favicon.png",
   },
+
+  // Open Graph metadata for social sharing
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://personal-site-seven-azure.vercel.app/",
+    title: "Timofey Boyko | Frontend Developer",
+    description:
+      "Timofey Boyko is a Frontend Developer with experience in React, NextJS, and frontend development. Discover projects, experience, and skills.",
+    siteName: "Timofey Boyko",
+  },
+
+  // Twitter metadata
+  twitter: {
+    card: "summary_large_image",
+    title: "Timofey Boyko | Frontend Developer",
+    description:
+      "Timofey Boyko is a Frontend Developer with experience in React, NextJS, and frontend development.",
+  },
+
+  // Appearance
+  themeColor: "#0f172a", // Slate-900 color
+  colorScheme: "dark light",
 };
 
 export default function RootLayout({
@@ -21,12 +60,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`relative max-h-dvh overflow-hidden bg-slate-900 font-sans leading-relaxed text-slate-400 antialiased selection:bg-teal-300 selection:text-teal-900`}
-      >
+      <body className={layoutStyles.body}>
         <Scrollbar>
           <Cursor />
-          <Layout>{children}</Layout>
+          <Layout>
+            <Header />
+            {children}
+          </Layout>
         </Scrollbar>
       </body>
     </html>

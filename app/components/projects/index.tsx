@@ -2,18 +2,17 @@ import React from "react";
 import Image from "next/image";
 
 import ReactPizzaPng from "@/public/react-pizza.png";
-import DocspaceJpg from "@/public/docspace.jpg";
 import PersonalSiteJpg from "@/public/personal-site.jpg";
 
 import data from "@/data/projects.json";
+import Section from "@/components/section";
+import Group from "@/components/group";
 
-import Section from "../section";
-import Group from "../group";
+import { sectionProjectsStyles } from "./SectionProjects.styles";
 
 function SectionProjects() {
   const getImage = (image: string) => {
-    const className =
-      "rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:order-1 sm:col-span-2 sm:translate-y-1";
+    const className = sectionProjectsStyles.image;
     switch (image) {
       case "react-pizza.png":
         return (
@@ -23,16 +22,6 @@ function SectionProjects() {
             height={ReactPizzaPng.height}
             className={className}
             alt="react-pizza"
-          />
-        );
-      case "docspace.jpg":
-        return (
-          <Image
-            src={DocspaceJpg.src}
-            width={DocspaceJpg.width}
-            height={DocspaceJpg.height}
-            className={className}
-            alt="docspace"
           />
         );
       case "personal-site.jpg":
@@ -53,11 +42,11 @@ function SectionProjects() {
   return (
     <Section id="projects" headerName="Projects" isLast>
       <div>
-        <ol className="group/list">
+        <ol className={sectionProjectsStyles.listContainer}>
           {data.items.map((item, index) => {
             const isLast = index === data.items.length - 1;
 
-            const classNameLi = isLast ? "" : "mb-12";
+            const classNameLi = sectionProjectsStyles.getListItemClass(isLast);
 
             return (
               <li key={item.title} className={classNameLi}>

@@ -4,21 +4,14 @@
       "title": "Personal site",
       "image": "personal-site.jpg",
       "link": "https://github.com/TimofeyBoyko/personal-site",
-      "content": "My personal site",
+      "content": "A modern, responsive portfolio website built with Next.js and TailwindCSS. Features include smooth scrolling navigation, and responsive design. The site showcases my projects, experience, and skills with a focus on accessibility and performance.",
       "tags": ["React", "NextJS", "TailwindCSS"]
-    },
-    {
-      "title": "ONLYOFFICE - DocSpace",
-      "image": "docspace.jpg",
-      "link": "https://github.com/ONLYOFFICE/DocSpace",
-      "content": "DocSpace provides flexible access permissions. Create rooms, invite people, collaborate and communicate to get work done. Co-author documents with one of two co-editing modes: real-time or paragraph-locking. Track changes, communicate in real-time using the built-in chat or making audio and video calls. Collaborate on office documents during Zoom meetings. Create, upload and share docs providing Edit or Live view permissions. Store files edited during your meeting within a room and get constant access to them from anywhere at any time. Invite users via external links to allow them to view documents without registration. Embed Public rooms into any web interface.",
-      "tags": ["React", "NextJS", "Styled Components", "MOBX", "Webpack"]
     },
     {
       "title": "React pizza",
       "image": "react-pizza.png",
       "link": "https://github.com/TimofeyBoyko/react-pizza",
-      "content": "My first project as react frontend develop. ",
+      "content": "An interactive pizza ordering web application built with React. Features include a dynamic cart system, filtering options, customizable pizza builder, and responsive design. This project demonstrates state management with Redux and styling with SASS.",
       "tags": ["React", "SASS", "Redux"]
     }
   ]
