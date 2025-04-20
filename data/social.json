@@ -1,3 +1,13 @@
 {
-  "items": [{ "name": "Github", "link": "https://github.com/TimofeyBoyko" }]
+  "items": [
+    { "name": "Github", "link": "https://github.com/TimofeyBoyko" },
+    {
+      "name": "LinkedIn",
+      "link": "https://www.linkedin.com/in/timofey-boyko-038779339/"
+    },
+    {
+      "name": "Telegram",
+      "link": "https://t.me/fognir"
+    }
+  ]
 }

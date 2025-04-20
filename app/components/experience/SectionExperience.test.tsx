@@ -53,12 +53,12 @@ jest.mock(
     items: [
       {
         company: "ONLYOFFICE",
-        position: "Senior developer",
+        position: "Frontend Developer",
         link: "https://www.onlyoffice.com",
         dates: "2021 — Present",
-        subRoles: ["Developer"],
+        subRoles: ["Main Developer"],
         description:
-          "Build front-end of a cloud-based document management and collaboration solution that allows users to create, edit, and share documents in real time.Share skills and knowledge about project with colleagues. Also create Plugin SDK, that allow integrate third-party functionality into DocSpace.",
+          "Build front-end of a cloud-based document management and collaboration solution that allows users to create, edit, and share documents in real time. Implemented OAuth2 protocol for secure authentication and developed an AI chat integration. Share skills and knowledge about project with colleagues. Also create Plugin SDK, that allow integrate third-party functionality into DocSpace.",
         tags: [
           "JavaScript",
           "TypeScript",
@@ -107,7 +107,7 @@ describe("SectionExperience", () => {
       "data-link",
       "https://www.onlyoffice.com",
     );
-    expect(groupMocks[0]).toHaveAttribute("data-header", "Senior developer");
+    expect(groupMocks[0]).toHaveAttribute("data-header", "Frontend Developer");
     expect(groupMocks[0]).toHaveAttribute("data-second", "ONLYOFFICE");
   });
 
@@ -130,7 +130,7 @@ describe("SectionExperience", () => {
     render(<SectionExperience />);
 
     const subRoles = screen.getAllByTestId("group-subroles");
-    expect(subRoles[0]).toHaveTextContent("Developer");
+    expect(subRoles[0]).toHaveTextContent("Main Developer");
   });
 
   it("renders descriptions correctly", () => {
@@ -138,7 +138,13 @@ describe("SectionExperience", () => {
 
     const descriptions = screen.getAllByTestId("group-content");
     expect(descriptions[0]).toHaveTextContent(
-      "Build front-end of a cloud-based document management and collaboration solution that allows users to create, edit, and share documents in real time.Share skills and knowledge about project with colleagues. Also create Plugin SDK, that allow integrate third-party functionality into DocSpace.",
+      "Build front-end of a cloud-based document management and collaboration solution"
+    );
+    expect(descriptions[0]).toHaveTextContent(
+      "Implemented OAuth2 protocol for secure authentication and developed an AI chat integration"
+    );
+    expect(descriptions[0]).toHaveTextContent(
+      "create Plugin SDK, that allow integrate third-party functionality"
     );
   });
 
