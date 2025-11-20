@@ -22,9 +22,7 @@ export const groupStyles = {
 
   // Combined hover effect classes
   get hoverEffect() {
-    return [this.hoverEffectGeneral, this.hoverEffectLg]
-      .filter(Boolean)
-      .join(" ");
+    return [this.hoverEffectGeneral, this.hoverEffectLg].filter(Boolean).join(" ");
   },
 
   // Content container styles - general
@@ -35,9 +33,7 @@ export const groupStyles = {
 
   // Combined content container classes
   get contentContainer() {
-    return [this.contentContainerGeneral, this.contentContainerSm]
-      .filter(Boolean)
-      .join(" ");
+    return [this.contentContainerGeneral, this.contentContainerSm].filter(Boolean).join(" ");
   },
 
   // Text styles
@@ -53,11 +49,7 @@ export const groupStyles = {
 
   // Function to generate header classes based on isImage
   getHeaderClasses(isImage: boolean) {
-    return [
-      this.headerBaseStyles,
-      isImage ? this.headerHidden : "",
-      this.headerSm,
-    ]
+    return [this.headerBaseStyles, isImage ? this.headerHidden : "", this.headerSm]
       .filter(Boolean)
       .join(" ");
   },
@@ -66,8 +58,7 @@ export const groupStyles = {
   contentHeaderMainGeneral: "font-medium leading-snug text-slate-200 select-none",
   contentHeaderLinkGeneral:
     "group/link inline-flex items-baseline text-base font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300 select-none",
-  contentHeaderLinkSpanGeneral:
-    "absolute -inset-x-4 -inset-y-2.5 hidden rounded",
+  contentHeaderLinkSpanGeneral: "absolute -inset-x-4 -inset-y-2.5 hidden rounded",
   contentSubHeaderGeneral: "text-slate-500 select-none",
 
   // Content Header Styles - device specific

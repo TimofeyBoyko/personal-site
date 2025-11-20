@@ -1,7 +1,6 @@
-import React from "react";
-import { headerStyles } from "../Header.styles";
-
 import data from "@/data/personal.json";
+
+import { headerStyles } from "../Header.styles";
 
 function Info() {
   return (

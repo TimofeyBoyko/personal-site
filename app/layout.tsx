@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 import Cursor from "@/components/cursor";
+import Header from "@/components/header";
 import Layout from "@/components/layout";
 import Scrollbar from "@/components/scrollbar";
-import Header from "@/components/header";
 
 import { layoutStyles } from "./Layout.styles";
 import "./globals.scss";
@@ -13,13 +13,7 @@ export const metadata: Metadata = {
   title: "Timofey Boyko | Frontend Developer",
   description:
     "Timofey Boyko is a Frontend Developer with experience in React, NextJS, and frontend development. Discover projects, experience, and skills.",
-  keywords: [
-    "Timofey Boyko",
-    "Frontend Developer",
-    "React",
-    "NextJS",
-    "Web Development",
-  ],
+  keywords: ["Timofey Boyko", "Frontend Developer", "React", "NextJS", "Web Development"],
   authors: [{ name: "Timofey Boyko" }],
   creator: "Timofey Boyko",
   publisher: "Timofey Boyko",

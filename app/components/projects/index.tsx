@@ -1,12 +1,10 @@
-import React from "react";
 import Image from "next/image";
 
-import ReactPizzaPng from "@/public/react-pizza.png";
-import PersonalSiteJpg from "@/public/personal-site.jpg";
-
-import data from "@/data/projects.json";
-import Section from "@/components/section";
 import Group from "@/components/group";
+import Section from "@/components/section";
+import data from "@/data/projects.json";
+import PersonalSiteJpg from "@/public/personal-site.jpg";
+import ReactPizzaPng from "@/public/react-pizza.png";
 
 import { sectionProjectsStyles } from "./SectionProjects.styles";
 

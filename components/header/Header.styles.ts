@@ -27,9 +27,7 @@ export const headerStyles = {
   },
 
   get infoSubtitle() {
-    return [this.infoSubtitleGeneral, this.infoSubtitleLg]
-      .filter(Boolean)
-      .join(" ");
+    return [this.infoSubtitleGeneral, this.infoSubtitleLg].filter(Boolean).join(" ");
   },
 
   get infoDescription() {
@@ -54,9 +52,7 @@ export const headerStyles = {
 
   // Combined navigation styles
   get navigationContainer() {
-    return [this.navigationContainerGeneral, this.navigationContainerLg]
-      .filter(Boolean)
-      .join(" ");
+    return [this.navigationContainerGeneral, this.navigationContainerLg].filter(Boolean).join(" ");
   },
 
   get navigationList() {
@@ -74,7 +70,7 @@ export const headerStyles = {
   get navigationIndicator() {
     return this.navigationIndicatorGeneral;
   },
-  
+
   get navigationIndicatorActive() {
     return this.navigationIndicatorActiveState;
   },
@@ -82,7 +78,7 @@ export const headerStyles = {
   get navigationText() {
     return this.navigationTextGeneral;
   },
-  
+
   get navigationTextActive() {
     return this.navigationTextActiveState;
   },

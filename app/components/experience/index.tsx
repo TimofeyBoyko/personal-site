@@ -1,8 +1,6 @@
-import React from "react";
-
-import data from "@/data/experience.json";
-import Section from "@/components/section";
 import Group from "@/components/group";
+import Section from "@/components/section";
+import data from "@/data/experience.json";
 
 import { sectionExperienceStyles } from "./SectionExperience.styles";
 
@@ -14,8 +12,7 @@ function SectionExperience() {
           {data.items.map((item, index) => {
             const isLast = index === data.items.length - 1;
 
-            const classNameLi =
-              sectionExperienceStyles.getListItemClass(isLast);
+            const classNameLi = sectionExperienceStyles.getListItemClass(isLast);
 
             return (
               <li key={item.description} className={classNameLi}>

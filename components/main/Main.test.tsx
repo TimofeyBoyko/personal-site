@@ -1,9 +1,8 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import { mainStyles } from "./Main.styles";
 import Main from "./index";
+import { mainStyles } from "./Main.styles";
 
 describe("Main", () => {
   it("renders children correctly", () => {

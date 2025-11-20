@@ -2,7 +2,7 @@
 export const mockPersonalData = {
   name: "John Doe",
   currentRole: "Software Developer",
-  description: "Passionate about building awesome web applications"
+  description: "Passionate about building awesome web applications",
 };
 
 // Mock social data
@@ -10,13 +10,13 @@ export const mockSocialData = {
   items: [
     {
       name: "Github",
-      link: "https://github.com/johndoe"
+      link: "https://github.com/johndoe",
     },
     {
       name: "LinkedIn",
-      link: "https://linkedin.com/in/johndoe"
-    }
-  ]
+      link: "https://linkedin.com/in/johndoe",
+    },
+  ],
 };
 
 // Mock navigation items
@@ -35,5 +35,5 @@ export const mockNavigationItems = [
     label: "projects",
     href: "#projects",
     isActive: false,
-  }
+  },
 ];

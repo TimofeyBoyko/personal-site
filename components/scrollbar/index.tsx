@@ -2,47 +2,39 @@
 
 import React from "react";
 
-import { ScrollbarProps } from "./Scrollbar.types";
 import { scrollbarStyles } from "./Scrollbar.styles";
+import type { ScrollbarProps } from "./Scrollbar.types";
 
 function Scrollbar({ children }: ScrollbarProps) {
   const contentRef = React.useRef<HTMLDivElement>(null);
-  const scrollTrackRef = React.useRef<HTMLDivElement>(null);
-  const scrollThumbRef = React.useRef<HTMLDivElement>(null);
+  const scrollTrackRef = React.useRef<HTMLButtonElement>(null);
+  const scrollThumbRef = React.useRef<HTMLButtonElement>(null);
   const observer = React.useRef<ResizeObserver>(null);
 
   const [hideScroll, setHideScroll] = React.useState(false);
   const [thumbHeight, setThumbHeight] = React.useState(20);
-  const [scrollStartPosition, setScrollStartPosition] = React.useState<
-    null | number
-  >(null);
+  const [scrollStartPosition, setScrollStartPosition] = React.useState<null | number>(null);
   const [initialScrollTop, setInitialScrollTop] = React.useState<number>(0);
   const [isDragging, setIsDragging] = React.useState(false);
 
-  const handleResize = React.useCallback(
-    (ref: HTMLDivElement, trackSize: number) => {
-      const { clientHeight, scrollHeight } = ref;
+  const handleResize = React.useCallback((ref: HTMLDivElement, trackSize: number) => {
+    const { clientHeight, scrollHeight } = ref;
 
-      if (clientHeight <= scrollHeight) {
-        // return setHideScroll(true);
-      }
-      setHideScroll(false);
-      setThumbHeight(Math.max((clientHeight / scrollHeight) * trackSize, 20));
-    },
-    [],
-  );
+    if (clientHeight <= scrollHeight) {
+      // return setHideScroll(true);
+    }
+    setHideScroll(false);
+    setThumbHeight(Math.max((clientHeight / scrollHeight) * trackSize, 20));
+  }, []);
 
-  const handleThumbMousedown = React.useCallback(
-    (e: MouseEvent | React.MouseEvent) => {
-      setScrollStartPosition(e.clientY);
-      if (contentRef.current) setInitialScrollTop(contentRef.current.scrollTop);
-      setIsDragging(true);
-    },
-    [],
-  );
+  const handleThumbMousedown = React.useCallback((e: MouseEvent | React.MouseEvent) => {
+    setScrollStartPosition(e.clientY);
+    if (contentRef.current) setInitialScrollTop(contentRef.current.scrollTop);
+    setIsDragging(true);
+  }, []);
 
   const handleThumbMouseup = React.useCallback(
-    (e: MouseEvent) => {
+    (_e: MouseEvent) => {
       if (isDragging) {
         setIsDragging(false);
       }
@@ -55,14 +47,10 @@ function Scrollbar({ children }: ScrollbarProps) {
       if (isDragging && contentRef.current && scrollStartPosition !== null) {
         e.preventDefault();
 
-        const {
-          scrollHeight: contentScrollHeight,
-          offsetHeight: contentOffsetHeight,
-        } = contentRef.current;
+        const { scrollHeight: contentScrollHeight, offsetHeight: contentOffsetHeight } =
+          contentRef.current;
 
-        const deltaY =
-          (e.clientY - scrollStartPosition) *
-          (contentOffsetHeight / thumbHeight);
+        const deltaY = (e.clientY - scrollStartPosition) * (contentOffsetHeight / thumbHeight);
         const newScrollTop = Math.min(
           initialScrollTop + deltaY,
           contentScrollHeight - contentOffsetHeight,
@@ -75,15 +63,10 @@ function Scrollbar({ children }: ScrollbarProps) {
   );
 
   const handleThumbPosition = React.useCallback(() => {
-    if (
-      !contentRef.current ||
-      !scrollTrackRef.current ||
-      !scrollThumbRef.current
-    ) {
+    if (!contentRef.current || !scrollTrackRef.current || !scrollThumbRef.current) {
       return;
     }
-    const { scrollTop: contentTop, scrollHeight: contentHeight } =
-      contentRef.current;
+    const { scrollTop: contentTop, scrollHeight: contentHeight } = contentRef.current;
     const { clientHeight: trackHeight } = scrollTrackRef.current;
     let newTop = (+contentTop / +contentHeight) * trackHeight;
     newTop = Math.min(newTop, trackHeight - thumbHeight);
@@ -101,11 +84,8 @@ function Scrollbar({ children }: ScrollbarProps) {
         const rect = target.getBoundingClientRect();
         const trackTop = rect.top;
         const thumbOffset = -(thumbHeight / 2);
-        const clickRatio =
-          (clientY - trackTop + thumbOffset) / trackCurrent.clientHeight;
-        const scrollAmount = Math.floor(
-          clickRatio * contentCurrent.scrollHeight,
-        );
+        const clickRatio = (clientY - trackTop + thumbOffset) / trackCurrent.clientHeight;
+        const scrollAmount = Math.floor(clickRatio * contentCurrent.scrollHeight);
         contentCurrent.scrollTo({
           top: scrollAmount,
           behavior: "smooth",
@@ -144,36 +124,31 @@ function Scrollbar({ children }: ScrollbarProps) {
       document.removeEventListener("mouseup", handleThumbMouseup);
       document.removeEventListener("mouseleave", handleThumbMouseup);
     };
-  }, [handleThumbMousedown, handleThumbMousemove, handleThumbMouseup]);
+  }, [handleThumbMousemove, handleThumbMouseup]);
 
   const trackAndThumbDragging = isDragging ? { width: "8px", opacity: 1 } : {};
 
   return (
-    <div
-      id="scrollbar"
-      className={`custom-scrollbar__container ${scrollbarStyles.container}`}
-    >
-      <div
-        className={`custom-scrollbar__content ${scrollbarStyles.content}`}
-        ref={contentRef}
-      >
+    <div id="scrollbar" className={`custom-scrollbar__container ${scrollbarStyles.container}`}>
+      <div className={`custom-scrollbar__content ${scrollbarStyles.content}`} ref={contentRef}>
         {children}
       </div>
       {!hideScroll && (
-        <div
-          className={`custom-scrollbar__scrollbar ${scrollbarStyles.scrollbar}`}
-        >
+        <div className={`custom-scrollbar__scrollbar ${scrollbarStyles.scrollbar}`}>
           <div
             className={`custom-scrollbar__track-and-thumb ${scrollbarStyles.trackAndThumb}`}
             style={{ ...trackAndThumbDragging }}
           >
-            <div
+            <button
+              type="button"
               className={`custom-scrollbar__track ${scrollbarStyles.track}`}
               ref={scrollTrackRef}
               onClick={handleTrackClick}
+              aria-label="Scroll track"
               style={{ cursor: isDragging ? "grabbing" : "pointer" }}
-            ></div>
-            <div
+            />
+            <button
+              type="button"
               className={`custom-scrollbar__thumb ${scrollbarStyles.thumb}`}
               ref={scrollThumbRef}
               onMouseDown={handleThumbMousedown}
@@ -181,7 +156,7 @@ function Scrollbar({ children }: ScrollbarProps) {
                 height: `${thumbHeight}px`,
                 cursor: isDragging ? "grabbing" : "grab",
               }}
-            ></div>
+            ></button>
           </div>
         </div>
       )}

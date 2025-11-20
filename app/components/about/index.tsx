@@ -1,8 +1,6 @@
-import React from "react";
-
+import Section from "@/components/section";
 import data from "@/data/about.json";
 import { parseTextToJSX } from "@/utils";
-import Section from "@/components/section";
 
 import { sectionAboutStyles } from "./SectionAbout.styles";
 

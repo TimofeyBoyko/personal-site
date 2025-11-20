@@ -1,5 +1,5 @@
+import { render, screen } from "@testing-library/react";
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 // Mock data files
@@ -33,7 +33,7 @@ jest.mock(
 // Mock GitHub SVG component
 jest.mock("../../../public/github.svg", () => ({
   __esModule: true,
-  default: (props: any) => <svg data-testid="github-svg" {...props} />,
+  default: (props: React.SVGProps<SVGSVGElement>) => <svg data-testid="github-svg" {...props} />,
 }));
 
 // Mock sub-components for main Header tests
@@ -44,9 +44,7 @@ jest.mock("./sub-components/header-info", () => ({
 
 jest.mock("./sub-components/header-navigation", () => ({
   __esModule: true,
-  default: () => (
-    <div data-testid="header-navigation">Navigation Component</div>
-  ),
+  default: () => <div data-testid="header-navigation">Navigation Component</div>,
 }));
 
 jest.mock("./sub-components/header-social", () => ({
@@ -54,10 +52,10 @@ jest.mock("./sub-components/header-social", () => ({
   default: () => <div data-testid="header-social">Social Component</div>,
 }));
 
+import { headerStyles } from "./Header.styles";
+import type { NavigationItemType } from "./Header.types";
 // Import components
 import Header from "./index";
-import { headerStyles } from "./Header.styles";
-import { NavigationItemType } from "./Header.types";
 
 // Main Header tests
 describe("Header Component", () => {
@@ -85,14 +83,8 @@ describe("Header Component", () => {
     const headerFirstChild = container.firstChild?.firstChild;
 
     // It should contain both Info and Navigation
-    expect(headerFirstChild?.firstChild).toHaveAttribute(
-      "data-testid",
-      "header-info",
-    );
-    expect(headerFirstChild?.lastChild).toHaveAttribute(
-      "data-testid",
-      "header-navigation",
-    );
+    expect(headerFirstChild?.firstChild).toHaveAttribute("data-testid", "header-info");
+    expect(headerFirstChild?.lastChild).toHaveAttribute("data-testid", "header-navigation");
   });
 
   it("renders Social separate from Info and Navigation", () => {
@@ -174,9 +166,7 @@ describe("Header Navigation Component", () => {
 
     // Setup mocks
     document.getElementById = mockGetElementById;
-    document.getElementsByClassName = jest
-      .fn()
-      .mockImplementation(() => [mockScrollElement]);
+    document.getElementsByClassName = jest.fn().mockImplementation(() => [mockScrollElement]);
 
     // Control useState for testing
     jest.spyOn(React, "useState").mockImplementation(() => {
@@ -194,9 +184,7 @@ describe("Header Navigation Component", () => {
   });
 
   // Re-import the real component
-  const RealNavigation = jest.requireActual(
-    "./sub-components/header-navigation",
-  ).default;
+  const RealNavigation = jest.requireActual("./sub-components/header-navigation").default;
 
   it("renders navigation links with correct labels", () => {
     render(<RealNavigation />);
@@ -220,7 +208,7 @@ describe("Header Navigation Component", () => {
     // The first nav item (about) should have aria-current="page" and active styling
     const activeLink = screen.getByTestId("nav-link-about");
     expect(activeLink).toHaveAttribute("aria-current", "page");
-    
+
     // Check for active indicator and text elements inside the active link
     const activeIndicator = activeLink.querySelector("span:first-child");
     const activeText = activeLink.querySelector("span:last-child");
@@ -230,7 +218,7 @@ describe("Header Navigation Component", () => {
     // Other items should not have aria-current attribute
     const nonActiveLink = screen.getByTestId("nav-link-experience");
     expect(nonActiveLink).not.toHaveAttribute("aria-current");
-    
+
     // Non-active link should have regular styling
     const nonActiveIndicator = nonActiveLink.querySelector("span:first-child");
     const nonActiveText = nonActiveLink.querySelector("span:last-child");
@@ -242,19 +230,13 @@ describe("Header Navigation Component", () => {
     const { unmount } = render(<RealNavigation />);
 
     // Check if event listener was added
-    expect(mockAddEventListener).toHaveBeenCalledWith(
-      "scroll",
-      expect.any(Function),
-    );
+    expect(mockAddEventListener).toHaveBeenCalledWith("scroll", expect.any(Function));
 
     // Unmount to check cleanup
     unmount();
 
     // Check if event listener was removed
-    expect(mockRemoveEventListener).toHaveBeenCalledWith(
-      "scroll",
-      expect.any(Function),
-    );
+    expect(mockRemoveEventListener).toHaveBeenCalledWith("scroll", expect.any(Function));
   });
 
   it("updates active state based on scroll position", () => {
@@ -302,9 +284,7 @@ describe("Header Social Component", () => {
   });
 
   // Re-import the real component
-  const RealSocial = jest.requireActual(
-    "./sub-components/header-social",
-  ).default;
+  const RealSocial = jest.requireActual("./sub-components/header-social").default;
 
   it("renders social links", () => {
     const { container } = render(<RealSocial />);
@@ -333,9 +313,7 @@ describe("Header Social Component", () => {
     // Check each social item
     socialItems.forEach((item) => {
       // Extract the name from the data-testid attribute
-      const itemName = item
-        .getAttribute("data-testid")
-        ?.replace("social-item-", "");
+      const itemName = item.getAttribute("data-testid")?.replace("social-item-", "");
 
       if (itemName === "Github") {
         // GitHub items should have the GitHub SVG
@@ -352,9 +330,7 @@ describe("Header Social Component", () => {
     const githubItem = screen.queryByTestId("social-item-Github");
     expect(githubItem).not.toBeNull();
     if (githubItem) {
-      expect(
-        githubItem.querySelector('[data-testid="github-svg"]'),
-      ).toBeInTheDocument();
+      expect(githubItem.querySelector('[data-testid="github-svg"]')).toBeInTheDocument();
     }
   });
 

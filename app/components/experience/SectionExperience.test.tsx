@@ -1,9 +1,8 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import { SectionProps } from "@/components/section/Section.types";
-import { GroupProps } from "@/components/group/Group.types";
+import type { GroupProps } from "@/components/group/Group.types";
+import type { SectionProps } from "@/components/section/Section.types";
 
 // Mock the Section component
 jest.mock("@/components/section", () => ({
@@ -78,8 +77,8 @@ jest.mock(
   { virtual: true },
 );
 
-import { sectionExperienceStyles } from "./SectionExperience.styles";
 import SectionExperience from "./index";
+import { sectionExperienceStyles } from "./SectionExperience.styles";
 
 describe("SectionExperience", () => {
   it("renders the section component with correct props", () => {
@@ -103,10 +102,7 @@ describe("SectionExperience", () => {
 
     const groupMocks = screen.getAllByTestId("group-mock");
 
-    expect(groupMocks[0]).toHaveAttribute(
-      "data-link",
-      "https://www.onlyoffice.com",
-    );
+    expect(groupMocks[0]).toHaveAttribute("data-link", "https://www.onlyoffice.com");
     expect(groupMocks[0]).toHaveAttribute("data-header", "Frontend Developer");
     expect(groupMocks[0]).toHaveAttribute("data-second", "ONLYOFFICE");
   });
@@ -138,13 +134,13 @@ describe("SectionExperience", () => {
 
     const descriptions = screen.getAllByTestId("group-content");
     expect(descriptions[0]).toHaveTextContent(
-      "Build front-end of a cloud-based document management and collaboration solution"
+      "Build front-end of a cloud-based document management and collaboration solution",
     );
     expect(descriptions[0]).toHaveTextContent(
-      "Implemented OAuth2 protocol for secure authentication and developed an AI chat integration"
+      "Implemented OAuth2 protocol for secure authentication and developed an AI chat integration",
     );
     expect(descriptions[0]).toHaveTextContent(
-      "create Plugin SDK, that allow integrate third-party functionality"
+      "create Plugin SDK, that allow integrate third-party functionality",
     );
   });
 

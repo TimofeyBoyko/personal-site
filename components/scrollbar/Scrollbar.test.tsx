@@ -1,6 +1,7 @@
+import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
+
 import Scrollbar from "./index";
 
 // Mock ResizeObserver
@@ -16,7 +17,7 @@ const originalResizeObserver = window.ResizeObserver;
 describe("Scrollbar", () => {
   beforeEach(() => {
     // Setup ResizeObserver mock
-    window.ResizeObserver = ResizeObserverMock as any;
+    window.ResizeObserver = ResizeObserverMock as unknown as typeof ResizeObserver;
 
     // Mock getBoundingClientRect
     Element.prototype.getBoundingClientRect = jest.fn(() => ({
@@ -46,9 +47,7 @@ describe("Scrollbar", () => {
     );
 
     expect(screen.getByTestId("scrollbar-content")).toBeInTheDocument();
-    expect(screen.getByTestId("scrollbar-content")).toHaveTextContent(
-      "Test Content",
-    );
+    expect(screen.getByTestId("scrollbar-content")).toHaveTextContent("Test Content");
   });
 
   it("renders scrollbar container with correct class", () => {
@@ -58,13 +57,9 @@ describe("Scrollbar", () => {
       </Scrollbar>,
     );
 
-    const scrollbarContainer = container.querySelector(
-      ".custom-scrollbar__container",
-    );
+    const scrollbarContainer = container.querySelector(".custom-scrollbar__container");
     expect(scrollbarContainer).toBeInTheDocument();
-    expect(scrollbarContainer).toHaveClass(
-      "relative max-h-dvh overflow-hidden bg-transparent",
-    );
+    expect(scrollbarContainer).toHaveClass("relative max-h-dvh overflow-hidden bg-transparent");
   });
 
   it("renders scrollbar content with correct class", () => {
@@ -74,9 +69,7 @@ describe("Scrollbar", () => {
       </Scrollbar>,
     );
 
-    const scrollbarContent = container.querySelector(
-      ".custom-scrollbar__content",
-    );
+    const scrollbarContent = container.querySelector(".custom-scrollbar__content");
     expect(scrollbarContent).toBeInTheDocument();
     expect(scrollbarContent).toHaveClass("max-h-dvh overflow-auto");
   });
@@ -109,9 +102,7 @@ describe("Scrollbar", () => {
       fireEvent.mouseDown(thumb, { clientY: 100 });
 
       // Verify thumb style changes for dragging state
-      expect(
-        container.querySelector(".custom-scrollbar__track-and-thumb"),
-      ).toHaveStyle({
+      expect(container.querySelector(".custom-scrollbar__track-and-thumb")).toHaveStyle({
         opacity: "1",
         width: "8px",
       });
@@ -169,14 +160,8 @@ describe("Scrollbar", () => {
   });
 
   it("adds and removes event listeners", () => {
-    const addEventListenerSpy = jest.spyOn(
-      Element.prototype,
-      "addEventListener",
-    );
-    const removeEventListenerSpy = jest.spyOn(
-      Element.prototype,
-      "removeEventListener",
-    );
+    const addEventListenerSpy = jest.spyOn(Element.prototype, "addEventListener");
+    const removeEventListenerSpy = jest.spyOn(Element.prototype, "removeEventListener");
 
     const { unmount } = render(
       <Scrollbar>
@@ -184,18 +169,12 @@ describe("Scrollbar", () => {
       </Scrollbar>,
     );
 
-    expect(addEventListenerSpy).toHaveBeenCalledWith(
-      "scroll",
-      expect.any(Function),
-    );
+    expect(addEventListenerSpy).toHaveBeenCalledWith("scroll", expect.any(Function));
 
     // Unmount to test cleanup
     unmount();
 
-    expect(removeEventListenerSpy).toHaveBeenCalledWith(
-      "scroll",
-      expect.any(Function),
-    );
+    expect(removeEventListenerSpy).toHaveBeenCalledWith("scroll", expect.any(Function));
   });
 
   it("adds and removes document event listeners", () => {
@@ -208,34 +187,16 @@ describe("Scrollbar", () => {
       </Scrollbar>,
     );
 
-    expect(addEventListenerSpy).toHaveBeenCalledWith(
-      "mousemove",
-      expect.any(Function),
-    );
-    expect(addEventListenerSpy).toHaveBeenCalledWith(
-      "mouseup",
-      expect.any(Function),
-    );
-    expect(addEventListenerSpy).toHaveBeenCalledWith(
-      "mouseleave",
-      expect.any(Function),
-    );
+    expect(addEventListenerSpy).toHaveBeenCalledWith("mousemove", expect.any(Function));
+    expect(addEventListenerSpy).toHaveBeenCalledWith("mouseup", expect.any(Function));
+    expect(addEventListenerSpy).toHaveBeenCalledWith("mouseleave", expect.any(Function));
 
     // Unmount to test cleanup
     unmount();
 
-    expect(removeEventListenerSpy).toHaveBeenCalledWith(
-      "mousemove",
-      expect.any(Function),
-    );
-    expect(removeEventListenerSpy).toHaveBeenCalledWith(
-      "mouseup",
-      expect.any(Function),
-    );
-    expect(removeEventListenerSpy).toHaveBeenCalledWith(
-      "mouseleave",
-      expect.any(Function),
-    );
+    expect(removeEventListenerSpy).toHaveBeenCalledWith("mousemove", expect.any(Function));
+    expect(removeEventListenerSpy).toHaveBeenCalledWith("mouseup", expect.any(Function));
+    expect(removeEventListenerSpy).toHaveBeenCalledWith("mouseleave", expect.any(Function));
   });
 
   it("handles mouse movement during dragging", () => {
@@ -285,9 +246,7 @@ describe("Scrollbar", () => {
     );
 
     const thumb = container.querySelector(".custom-scrollbar__thumb");
-    const trackAndThumb = container.querySelector(
-      ".custom-scrollbar__track-and-thumb",
-    );
+    const trackAndThumb = container.querySelector(".custom-scrollbar__track-and-thumb");
 
     if (thumb && trackAndThumb) {
       // Start dragging
@@ -353,11 +312,9 @@ describe("Scrollbar", () => {
 
   it("correctly handles ResizeObserver", () => {
     // Spy on handleResize being called by ResizeObserver
-    const handleResizeSpy = jest
-      .spyOn(React, "useCallback")
-      .mockImplementation((fn, deps) => {
-        return fn;
-      });
+    const _handleResizeSpy = jest.spyOn(React, "useCallback").mockImplementation((fn, _deps) => {
+      return fn;
+    });
 
     // Mock dimensions for ResizeObserver testing
     Object.defineProperty(HTMLElement.prototype, "clientHeight", {

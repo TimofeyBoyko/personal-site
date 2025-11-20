@@ -1,11 +1,8 @@
-import React from "react";
-
-import TagsList from "./sub-components/tags-list";
-import GroupHeader from "./sub-components/header";
-import ContentHeader from "./sub-components/content-header";
-
 import { groupStyles } from "./Group.styles";
-import { GroupProps } from "./Group.types";
+import type { GroupProps } from "./Group.types";
+import ContentHeader from "./sub-components/content-header";
+import GroupHeader from "./sub-components/header";
+import TagsList from "./sub-components/tags-list";
 
 function Group({
   headerText,

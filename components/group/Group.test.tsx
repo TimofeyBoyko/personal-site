@@ -1,6 +1,7 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
+import type React from "react";
 import "@testing-library/jest-dom";
+import Image from "next/image";
 
 // Mock sub-components
 jest.mock("./sub-components/header", () => ({
@@ -51,7 +52,6 @@ jest.mock("./sub-components/icon-link", () => ({
 }));
 
 import { groupStyles } from "./Group.styles";
-
 import Group from "./index";
 
 describe("Group", () => {
@@ -81,8 +81,7 @@ describe("Group", () => {
     render(<Group {...defaultProps} />);
 
     // Get the main container element
-    const container = screen.getByText("Test content description").parentElement
-      ?.parentElement;
+    const container = screen.getByText("Test content description").parentElement?.parentElement;
 
     // Check if it has the container class
     expect(container).toHaveClass(groupStyles.general);
@@ -98,9 +97,7 @@ describe("Group", () => {
     const contentHeader = screen.getByTestId("content-header");
     expect(contentHeader).toHaveTextContent("Link: https://example.com");
     expect(contentHeader).toHaveTextContent("Header: Test Content Header");
-    expect(contentHeader).toHaveTextContent(
-      "SecondHeader: Test Content Second Header",
-    );
+    expect(contentHeader).toHaveTextContent("SecondHeader: Test Content Second Header");
     expect(contentHeader).toHaveTextContent("SubHeader: Test Sub Header 1");
     expect(contentHeader).toHaveTextContent("SubHeader: Test Sub Header 2");
 
@@ -130,7 +127,9 @@ describe("Group", () => {
     // Create props with an image as headerText
     const propsWithImage = {
       ...defaultProps,
-      headerText: <img src="test.jpg" alt="Test" data-testid="header-image" />,
+      headerText: (
+        <Image src="/test.jpg" alt="Test" data-testid="header-image" width={100} height={100} />
+      ),
     };
 
     render(<Group {...propsWithImage} />);
@@ -163,9 +162,7 @@ describe("Group", () => {
     // Test hover effect styles
     describe("hover effect styles", () => {
       it("combines general and lg styles", () => {
-        expect(groupStyles.hoverEffect).toContain(
-          groupStyles.hoverEffectGeneral,
-        );
+        expect(groupStyles.hoverEffect).toContain(groupStyles.hoverEffectGeneral);
         expect(groupStyles.hoverEffect).toContain(groupStyles.hoverEffectLg);
       });
     });
@@ -173,12 +170,8 @@ describe("Group", () => {
     // Test content container styles
     describe("content container styles", () => {
       it("combines general and sm styles", () => {
-        expect(groupStyles.contentContainer).toContain(
-          groupStyles.contentContainerGeneral,
-        );
-        expect(groupStyles.contentContainer).toContain(
-          groupStyles.contentContainerSm,
-        );
+        expect(groupStyles.contentContainer).toContain(groupStyles.contentContainerGeneral);
+        expect(groupStyles.contentContainer).toContain(groupStyles.contentContainerSm);
       });
     });
 
@@ -202,30 +195,22 @@ describe("Group", () => {
     // Test content header style getters
     describe("content header style getters", () => {
       it("contentHeaderMain returns the correct styles", () => {
-        expect(groupStyles.contentHeaderMain).toBe(
-          groupStyles.contentHeaderMainGeneral,
-        );
+        expect(groupStyles.contentHeaderMain).toBe(groupStyles.contentHeaderMainGeneral);
       });
 
       it("contentHeaderLink returns the correct styles", () => {
-        expect(groupStyles.contentHeaderLink).toBe(
-          groupStyles.contentHeaderLinkGeneral,
-        );
+        expect(groupStyles.contentHeaderLink).toBe(groupStyles.contentHeaderLinkGeneral);
       });
 
       it("contentHeaderLinkSpan combines general and lg styles", () => {
         expect(groupStyles.contentHeaderLinkSpan).toContain(
           groupStyles.contentHeaderLinkSpanGeneral,
         );
-        expect(groupStyles.contentHeaderLinkSpan).toContain(
-          groupStyles.contentHeaderLinkSpanLg,
-        );
+        expect(groupStyles.contentHeaderLinkSpan).toContain(groupStyles.contentHeaderLinkSpanLg);
       });
 
       it("contentSubHeader returns the correct styles", () => {
-        expect(groupStyles.contentSubHeader).toBe(
-          groupStyles.contentSubHeaderGeneral,
-        );
+        expect(groupStyles.contentSubHeader).toBe(groupStyles.contentSubHeaderGeneral);
       });
     });
   });
@@ -254,9 +239,7 @@ describe("TagsList", () => {
   // Mock the Tag component to isolate TagsList testing
   jest.mock("./sub-components/tag", () => ({
     __esModule: true,
-    default: ({ label }: { label: string }) => (
-      <div data-testid={`tag-${label}`}>{label}</div>
-    ),
+    default: ({ label }: { label: string }) => <div data-testid={`tag-${label}`}>{label}</div>,
   }));
 
   // Unmock TagsList for these tests
@@ -281,14 +264,14 @@ describe("TagsList", () => {
     // Check that each list item has the correct class
     const listItems = tagsList.querySelectorAll("li");
     expect(listItems.length).toBe(testTags.length);
-    listItems.forEach(item => {
+    listItems.forEach((item) => {
       expect(item).toHaveClass(groupStyles.tagsListItem);
     });
   });
 
   it("passes the correct label to each Tag component", () => {
     render(<RealTagsList tags={testTags} />);
-    testTags.forEach(tag => {
+    testTags.forEach((tag) => {
       const tagElement = screen.getByText(tag);
       expect(tagElement).toBeInTheDocument();
     });
@@ -317,7 +300,7 @@ describe("GroupHeader", () => {
 
   it("renders with hidden class for image header", () => {
     const ImageElement = (
-      <img src="test.jpg" alt="test" data-testid="header-image" />
+      <Image src="/test.jpg" alt="test" data-testid="header-image" width={100} height={100} />
     );
     const { container } = render(<RealGroupHeader headerText={ImageElement} />);
     const header = container.querySelector("header");
@@ -348,9 +331,7 @@ describe("TagsList", () => {
   // Mock the Tag component to isolate TagsList testing
   jest.mock("./sub-components/tag", () => ({
     __esModule: true,
-    default: ({ label }: { label: string }) => (
-      <div data-testid={`tag-${label}`}>{label}</div>
-    ),
+    default: ({ label }: { label: string }) => <div data-testid={`tag-${label}`}>{label}</div>,
   }));
 
   // Unmock TagsList for these tests
@@ -375,14 +356,14 @@ describe("TagsList", () => {
     // Check that each list item has the correct class
     const listItems = tagsList.querySelectorAll("li");
     expect(listItems.length).toBe(testTags.length);
-    listItems.forEach(item => {
+    listItems.forEach((item) => {
       expect(item).toHaveClass(groupStyles.tagsListItem);
     });
   });
 
   it("passes the correct label to each Tag component", () => {
     render(<RealTagsList tags={testTags} />);
-    testTags.forEach(tag => {
+    testTags.forEach((tag) => {
       const tagElement = screen.getByText(tag);
       expect(tagElement).toBeInTheDocument();
     });
@@ -402,9 +383,7 @@ describe("ContentHeader", () => {
   }));
 
   // Re-import to get the real content-header but with mocked dependencies
-  const RealContentHeader = jest.requireActual(
-    "./sub-components/content-header",
-  ).default;
+  const RealContentHeader = jest.requireActual("./sub-components/content-header").default;
 
   const contentHeaderProps = {
     mainLink: "https://example.com",
@@ -435,7 +414,7 @@ describe("ContentHeader", () => {
   });
 
   it("renders icon link", () => {
-    const { container } = render(<RealContentHeader {...contentHeaderProps} />);
+    render(<RealContentHeader {...contentHeaderProps} />);
 
     // Since we've mocked IconLink with a testid, we can check for it
     expect(screen.getByTestId("icon-link-mock")).toBeInTheDocument();
@@ -446,9 +425,7 @@ describe("ContentHeader", () => {
   });
 
   it("renders without second header when not provided", () => {
-    render(
-      <RealContentHeader {...contentHeaderProps} contentSecondHeader="" />,
-    );
+    render(<RealContentHeader {...contentHeaderProps} contentSecondHeader="" />);
     expect(screen.queryByText(/·/)).not.toBeInTheDocument();
   });
 });
@@ -476,9 +453,7 @@ describe("TagsList", () => {
   // Mock the Tag component to isolate TagsList testing
   jest.mock("./sub-components/tag", () => ({
     __esModule: true,
-    default: ({ label }: { label: string }) => (
-      <div data-testid={`tag-${label}`}>{label}</div>
-    ),
+    default: ({ label }: { label: string }) => <div data-testid={`tag-${label}`}>{label}</div>,
   }));
 
   // Unmock TagsList for these tests
@@ -503,14 +478,14 @@ describe("TagsList", () => {
     // Check that each list item has the correct class
     const listItems = tagsList.querySelectorAll("li");
     expect(listItems.length).toBe(testTags.length);
-    listItems.forEach(item => {
+    listItems.forEach((item) => {
       expect(item).toHaveClass(groupStyles.tagsListItem);
     });
   });
 
   it("passes the correct label to each Tag component", () => {
     render(<RealTagsList tags={testTags} />);
-    testTags.forEach(tag => {
+    testTags.forEach((tag) => {
       const tagElement = screen.getByText(tag);
       expect(tagElement).toBeInTheDocument();
     });
@@ -569,9 +544,7 @@ describe("TagsList", () => {
   // Mock the Tag component to isolate TagsList testing
   jest.mock("./sub-components/tag", () => ({
     __esModule: true,
-    default: ({ label }: { label: string }) => (
-      <div data-testid={`tag-${label}`}>{label}</div>
-    ),
+    default: ({ label }: { label: string }) => <div data-testid={`tag-${label}`}>{label}</div>,
   }));
 
   // Unmock TagsList for these tests
@@ -596,14 +569,14 @@ describe("TagsList", () => {
     // Check that each list item has the correct class
     const listItems = tagsList.querySelectorAll("li");
     expect(listItems.length).toBe(testTags.length);
-    listItems.forEach(item => {
+    listItems.forEach((item) => {
       expect(item).toHaveClass(groupStyles.tagsListItem);
     });
   });
 
   it("passes the correct label to each Tag component", () => {
     render(<RealTagsList tags={testTags} />);
-    testTags.forEach(tag => {
+    testTags.forEach((tag) => {
       const tagElement = screen.getByText(tag);
       expect(tagElement).toBeInTheDocument();
     });

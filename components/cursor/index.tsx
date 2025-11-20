@@ -4,18 +4,15 @@ import React from "react";
 import { isMobile } from "react-device-detect";
 
 import { cursorStyles } from "./Cursor.styles";
-import { CursorProps } from "./Cursor.types";
+import type { CursorProps } from "./Cursor.types";
 
-function Cursor({}: CursorProps) {
+function Cursor(_props: CursorProps) {
   const cursorElement = React.useRef<null | HTMLDivElement>(null);
 
   const onCursorMove = React.useCallback((e: MouseEvent) => {
     if (!cursorElement.current) return;
 
-    cursorElement.current.style.background = cursorStyles.getBackgroundStyle(
-      e.clientX,
-      e.clientY,
-    );
+    cursorElement.current.style.background = cursorStyles.getBackgroundStyle(e.clientX, e.clientY);
   }, []);
 
   React.useEffect(() => {
@@ -29,12 +26,7 @@ function Cursor({}: CursorProps) {
   return isMobile ? (
     <div />
   ) : (
-    <div
-      id="cursor"
-      data-testid="cursor"
-      ref={cursorElement}
-      className={cursorStyles.container}
-    />
+    <div id="cursor" data-testid="cursor" ref={cursorElement} className={cursorStyles.container} />
   );
 }
 

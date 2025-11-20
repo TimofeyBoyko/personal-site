@@ -1,8 +1,7 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import { SectionProps } from "@/components/section/Section.types";
+import type { SectionProps } from "@/components/section/Section.types";
 
 // Mock the Section component
 jest.mock("@/components/section", () => ({
@@ -53,8 +52,8 @@ jest.mock(
   { virtual: true },
 );
 
-import { sectionAboutStyles } from "./SectionAbout.styles";
 import SectionAbout from "./index";
+import { sectionAboutStyles } from "./SectionAbout.styles";
 
 describe("SectionAbout", () => {
   it("renders the section component with correct props", () => {
@@ -81,12 +80,8 @@ describe("SectionAbout", () => {
     expect(
       screen.getByText(/Even as a teenager, I was interested in computers/),
     ).toBeInTheDocument();
-    expect(
-      screen.getByText(/My main focus these days is developing/),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/When I'm not on the computer/),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/My main focus these days is developing/)).toBeInTheDocument();
+    expect(screen.getByText(/When I'm not on the computer/)).toBeInTheDocument();
   });
 
   it("applies correct margin classes based on paragraph position", () => {
@@ -106,9 +101,7 @@ describe("SectionAbout", () => {
   // Test styles object
   describe("sectionAboutStyles", () => {
     it("returns correct paragraph classes based on isLast prop", () => {
-      expect(sectionAboutStyles.getParagraphClass(true)).toBe(
-        sectionAboutStyles.paragraphNoMargin,
-      );
+      expect(sectionAboutStyles.getParagraphClass(true)).toBe(sectionAboutStyles.paragraphNoMargin);
       expect(sectionAboutStyles.getParagraphClass(false)).toBe(
         sectionAboutStyles.paragraphWithMargin,
       );

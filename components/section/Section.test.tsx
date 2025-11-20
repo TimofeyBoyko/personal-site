@@ -1,9 +1,8 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { render, screen } from "@testing-library/react";
 
-import { sectionStyles } from "./Section.styles";
 import Section from "./index";
+import { sectionStyles } from "./Section.styles";
 
 describe("Section", () => {
   const defaultProps = {
@@ -16,9 +15,7 @@ describe("Section", () => {
   it("renders children correctly", () => {
     render(<Section {...defaultProps} />);
     expect(screen.getByTestId("section-content")).toBeInTheDocument();
-    expect(screen.getByTestId("section-content")).toHaveTextContent(
-      "Test Content",
-    );
+    expect(screen.getByTestId("section-content")).toHaveTextContent("Test Content");
   });
 
   it("renders header with the correct text", () => {
@@ -68,20 +65,14 @@ describe("Section", () => {
 
     describe("headerContainer", () => {
       it("combines general and breakpoint styles", () => {
-        expect(sectionStyles.headerContainer).toContain(
-          sectionStyles.headerContainerGeneral,
-        );
-        expect(sectionStyles.headerContainer).toContain(
-          sectionStyles.headerContainerLg,
-        );
+        expect(sectionStyles.headerContainer).toContain(sectionStyles.headerContainerGeneral);
+        expect(sectionStyles.headerContainer).toContain(sectionStyles.headerContainerLg);
       });
     });
 
     describe("headerText", () => {
       it("combines general and breakpoint styles", () => {
-        expect(sectionStyles.headerText).toContain(
-          sectionStyles.headerTextGeneral,
-        );
+        expect(sectionStyles.headerText).toContain(sectionStyles.headerTextGeneral);
         expect(sectionStyles.headerText).toContain(sectionStyles.headerTextLg);
       });
     });

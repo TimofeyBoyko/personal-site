@@ -1,30 +1,9 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import Image from "next/image";
 
-import { SectionProps } from "@/components/section/Section.types";
-import { GroupProps } from "@/components/group/Group.types";
-
-// Mock the next/image component
-jest.mock("next/image", () => ({
-  __esModule: true,
-  default: ({
-    src,
-    alt,
-    className,
-  }: {
-    src: string;
-    alt: string;
-    className: string;
-  }) => (
-    <img
-      src={src}
-      alt={alt}
-      className={className}
-      data-testid={`image-${alt}`}
-    />
-  ),
-}));
+import type { GroupProps } from "@/components/group/Group.types";
+import type { SectionProps } from "@/components/section/Section.types";
 
 // Mock the Section component
 jest.mock("@/components/section", () => ({
@@ -44,18 +23,8 @@ jest.mock("@/components/section", () => ({
 // Mock the Group component
 jest.mock("@/components/group", () => ({
   __esModule: true,
-  default: ({
-    headerText,
-    mainLink,
-    contentHeader,
-    content,
-    tags,
-  }: GroupProps) => (
-    <div
-      data-testid="group-mock"
-      data-link={mainLink}
-      data-header={contentHeader}
-    >
+  default: ({ headerText, mainLink, contentHeader, content, tags }: GroupProps) => (
+    <div data-testid="group-mock" data-link={mainLink} data-header={contentHeader}>
       <div data-testid="group-header">{headerText}</div>
       <div data-testid="group-content">{content}</div>
       <div data-testid="group-tags">{tags.join(", ")}</div>
@@ -89,8 +58,8 @@ jest.mock(
   { virtual: true },
 );
 
-import { sectionProjectsStyles } from "./SectionProjects.styles";
 import SectionProjects from "./index";
+import { sectionProjectsStyles } from "./SectionProjects.styles";
 
 describe("SectionProjects", () => {
   it("renders the section component with correct props", () => {
@@ -133,11 +102,9 @@ describe("SectionProjects", () => {
     const contents = screen.getAllByTestId("group-content");
     // Use a substring to avoid whitespace issues
     expect(contents[0]).toHaveTextContent(
-      "responsive portfolio website built with Next.js and TailwindCSS"
+      "responsive portfolio website built with Next.js and TailwindCSS",
     );
-    expect(contents[0]).toHaveTextContent(
-      "Features include smooth scrolling navigation"
-    );
+    expect(contents[0]).toHaveTextContent("Features include smooth scrolling navigation");
     expect(contents[1]).toHaveTextContent(
       "An interactive pizza ordering web application built with React. Features include a dynamic cart system, filtering options, customizable pizza builder, and responsive design. This project demonstrates state management with Redux and styling with SASS.",
     );
@@ -154,10 +121,10 @@ describe("SectionProjects", () => {
   it("renders images with correct classes", () => {
     render(<SectionProjects />);
 
-    const personalSiteImage = screen.getByTestId("image-personal-site");
+    const personalSiteImage = screen.getByAltText("personal-site");
     expect(personalSiteImage).toHaveClass(sectionProjectsStyles.imageGeneral);
 
-    const pizzaImage = screen.getByTestId("image-react-pizza");
+    const pizzaImage = screen.getByAltText("react-pizza");
     expect(pizzaImage).toHaveClass(sectionProjectsStyles.imageGeneral);
   });
 
@@ -170,19 +137,23 @@ describe("SectionProjects", () => {
         switch (imageName) {
           case "personal-site.jpg":
             return (
-              <img
+              <Image
                 data-testid="image-personal-site"
                 src="/img.jpg"
                 alt="personal-site"
+                width={40}
+                height={40}
               />
             );
 
           case "react-pizza.png":
             return (
-              <img
+              <Image
                 data-testid="image-react-pizza"
                 src="/img.jpg"
                 alt="react-pizza"
+                width={40}
+                height={40}
               />
             );
           default:
@@ -208,12 +179,8 @@ describe("SectionProjects", () => {
   // Test styles object
   describe("sectionProjectsStyles", () => {
     it("combines image styles correctly", () => {
-      expect(sectionProjectsStyles.image).toContain(
-        sectionProjectsStyles.imageGeneral,
-      );
-      expect(sectionProjectsStyles.image).toContain(
-        sectionProjectsStyles.imageSm,
-      );
+      expect(sectionProjectsStyles.image).toContain(sectionProjectsStyles.imageGeneral);
+      expect(sectionProjectsStyles.image).toContain(sectionProjectsStyles.imageSm);
     });
 
     it("returns correct list item classes based on isLast prop", () => {

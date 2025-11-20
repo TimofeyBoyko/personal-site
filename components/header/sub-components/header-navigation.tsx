@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
+
 import { headerStyles } from "../Header.styles";
-import { NavigationItemType } from "../Header.types";
+import type { NavigationItemType } from "../Header.types";
 
 const data = [
   {
@@ -36,10 +37,7 @@ function Navigation() {
 
         if (alreadyActive) return { ...d };
 
-        alreadyActive =
-          (clientRect && clientRect.top > 0) || index === data.length - 1
-            ? true
-            : false;
+        alreadyActive = !!((clientRect && clientRect.top > 0) || index === data.length - 1);
 
         return { ...d, isActive: alreadyActive };
       });
@@ -47,9 +45,7 @@ function Navigation() {
       setItems([...newData]);
     };
 
-    const scroll = document.getElementsByClassName(
-      "custom-scrollbar__content",
-    )[0];
+    const scroll = document.getElementsByClassName("custom-scrollbar__content")[0];
 
     scroll?.addEventListener("scroll", onScroll);
 
@@ -61,10 +57,7 @@ function Navigation() {
   }, []);
 
   return (
-    <nav
-      className={headerStyles.navigationContainer}
-      data-testid="navigation-container"
-    >
+    <nav className={headerStyles.navigationContainer} data-testid="navigation-container">
       <ul className={headerStyles.navigationList} data-testid="navigation-list">
         {items.map((item) => {
           return (
@@ -84,9 +77,7 @@ function Navigation() {
                 />
                 <span
                   className={
-                    item.isActive
-                      ? headerStyles.navigationTextActive
-                      : headerStyles.navigationText
+                    item.isActive ? headerStyles.navigationTextActive : headerStyles.navigationText
                   }
                 >
                   {item.label}

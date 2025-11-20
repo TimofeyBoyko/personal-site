@@ -1,6 +1,5 @@
-import React from "react";
 import { groupStyles } from "../Group.styles";
-import { TagProps } from "../Group.types";
+import type { TagProps } from "../Group.types";
 
 function Tag({ label }: TagProps) {
   return (

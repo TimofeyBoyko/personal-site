@@ -1,8 +1,5 @@
-import React from "react";
-
 import { groupStyles } from "../Group.styles";
-import { GroupContentHeaderProps } from "../Group.types";
-
+import type { GroupContentHeaderProps } from "../Group.types";
 import IconLink from "./icon-link";
 
 function ContentHeader({
@@ -14,11 +11,7 @@ function ContentHeader({
   return (
     <h3 className={groupStyles.contentHeaderMain}>
       <div>
-        <a
-          href={mainLink}
-          target="_blank"
-          className={groupStyles.contentHeaderLink}
-        >
+        <a href={mainLink} target="_blank" className={groupStyles.contentHeaderLink}>
           <span className={groupStyles.contentHeaderLinkSpan}></span>
           <span>
             {contentHeader}

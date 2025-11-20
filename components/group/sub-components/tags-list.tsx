@@ -1,6 +1,5 @@
-import React from "react";
 import { groupStyles } from "../Group.styles";
-import { TagsListProps } from "../Group.types";
+import type { TagsListProps } from "../Group.types";
 import Tag from "./tag";
 
 function TagsList({ tags }: TagsListProps) {

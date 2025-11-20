@@ -13,8 +13,7 @@ export const sectionStyles = {
     "lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0",
 
   // Header text styles - General and Breakpoints
-  headerTextGeneral:
-    "text-sm font-bold uppercase tracking-widest text-slate-200",
+  headerTextGeneral: "text-sm font-bold uppercase tracking-widest text-slate-200",
   headerTextLg: "lg:sr-only",
 
   // Combined style getters
@@ -29,14 +28,10 @@ export const sectionStyles = {
   },
 
   get headerContainer() {
-    return [this.headerContainerGeneral, this.headerContainerLg]
-      .filter(Boolean)
-      .join(" ");
+    return [this.headerContainerGeneral, this.headerContainerLg].filter(Boolean).join(" ");
   },
 
   get headerText() {
-    return [this.headerTextGeneral, this.headerTextLg]
-      .filter(Boolean)
-      .join(" ");
+    return [this.headerTextGeneral, this.headerTextLg].filter(Boolean).join(" ");
   },
 };
