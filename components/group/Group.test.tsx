@@ -48,7 +48,7 @@ jest.mock("./sub-components/tags-list", () => ({
 
 jest.mock("./sub-components/icon-link", () => ({
   __esModule: true,
-  default: () => <div data-testid="icon-link"></div>,
+  default: () => <div data-testid="icon-link" />,
 }));
 
 import { groupStyles } from "./Group.styles";

@@ -86,7 +86,9 @@ describe("Cursor", () => {
     cursorStyles.getBackgroundStyle = mockGetBackgroundStyle;
 
     // Get the callback function during render
-    let capturedCallback: (event: MouseEvent) => void = () => {};
+    let capturedCallback: (event: MouseEvent) => void = () => {
+      // Intentionally empty - will be replaced by addEventListener mock
+    };
 
     const originalAddEventListener = window.addEventListener;
     window.addEventListener = jest.fn((event: string, callback) => {

@@ -12,7 +12,7 @@ function ContentHeader({
     <h3 className={groupStyles.contentHeaderMain}>
       <div>
         <a href={mainLink} target="_blank" className={groupStyles.contentHeaderLink}>
-          <span className={groupStyles.contentHeaderLinkSpan}></span>
+          <span className={groupStyles.contentHeaderLinkSpan} />
           <span>
             {contentHeader}
             {contentSecondHeader ? " · " : ""}

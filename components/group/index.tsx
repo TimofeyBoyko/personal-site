@@ -15,7 +15,7 @@ function Group({
 }: GroupProps) {
   return (
     <div className={groupStyles.container}>
-      <div data-testid="hover-effect" className={groupStyles.hoverEffect}></div>
+      <div data-testid="hover-effect" className={groupStyles.hoverEffect} />
       <GroupHeader headerText={headerText} />
 
       <div className={groupStyles.contentContainer}>

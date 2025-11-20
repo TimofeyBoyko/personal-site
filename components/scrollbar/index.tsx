@@ -63,7 +63,7 @@ function Scrollbar({ children }: ScrollbarProps) {
   );
 
   const handleThumbPosition = React.useCallback(() => {
-    if (!contentRef.current || !scrollTrackRef.current || !scrollThumbRef.current) {
+    if (!(contentRef.current && scrollTrackRef.current && scrollThumbRef.current)) {
       return;
     }
     const { scrollTop: contentTop, scrollHeight: contentHeight } = contentRef.current;
@@ -156,7 +156,7 @@ function Scrollbar({ children }: ScrollbarProps) {
                 height: `${thumbHeight}px`,
                 cursor: isDragging ? "grabbing" : "grab",
               }}
-            ></button>
+            />
           </div>
         </div>
       )}
