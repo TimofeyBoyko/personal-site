@@ -4,7 +4,7 @@
       "date": "2021 — Present",
       "role": "Frontend Developer",
       "company": "ONLYOFFICE",
-      "sub-roles": ["Main Developer"],
+      "sub-roles": ["Developer"],
       "link": "https://www.onlyoffice.com",
       "description": "Build front-end of a cloud-based document management and collaboration solution that allows users to create, edit, and share documents in real time. Implemented OAuth2 protocol for secure authentication and developed an AI chat integration. Share skills and knowledge about project with colleagues. Also create Plugin SDK, that allow integrate third-party functionality into DocSpace.",
       "tags": [
