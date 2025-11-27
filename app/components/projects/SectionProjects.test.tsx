@@ -1,12 +1,11 @@
 import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
 import Image from "next/image";
 
 import type { GroupProps } from "@/components/group/Group.types";
 import type { SectionProps } from "@/components/section/Section.types";
 
 // Mock the Section component
-jest.mock("@/components/section", () => ({
+vi.mock("@/components/section", () => ({
   __esModule: true,
   default: ({ id, headerName, isLast, children }: SectionProps) => (
     <div
@@ -21,7 +20,7 @@ jest.mock("@/components/section", () => ({
 }));
 
 // Mock the Group component
-jest.mock("@/components/group", () => ({
+vi.mock("@/components/group", () => ({
   __esModule: true,
   default: ({ headerText, mainLink, contentHeader, content, tags }: GroupProps) => (
     <div data-testid="group-mock" data-link={mainLink} data-header={contentHeader}>
@@ -33,9 +32,8 @@ jest.mock("@/components/group", () => ({
 }));
 
 // Mock the projects data
-jest.mock(
-  "@/data/projects.json",
-  () => ({
+vi.mock("@/data/projects.json", () => ({
+  default: {
     items: [
       {
         title: "Personal site",
@@ -54,9 +52,8 @@ jest.mock(
         tags: ["React", "SASS", "Redux"],
       },
     ],
-  }),
-  { virtual: true },
-);
+  },
+}));
 
 import SectionProjects from "./index";
 import { sectionProjectsStyles } from "./SectionProjects.styles";

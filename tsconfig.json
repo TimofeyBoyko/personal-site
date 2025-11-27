@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["jest", "node"],
+    "types": ["node", "vitest/globals"],
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,

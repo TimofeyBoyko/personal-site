@@ -1,14 +1,13 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
-import "@testing-library/jest-dom";
 
 import Scrollbar from "./index";
 
 // Mock ResizeObserver
 class ResizeObserverMock {
-  observe = jest.fn();
-  unobserve = jest.fn();
-  disconnect = jest.fn();
+  observe = vi.fn();
+  unobserve = vi.fn();
+  disconnect = vi.fn();
 }
 
 // Save original implementation
@@ -20,7 +19,7 @@ describe("Scrollbar", () => {
     window.ResizeObserver = ResizeObserverMock as unknown as typeof ResizeObserver;
 
     // Mock getBoundingClientRect
-    Element.prototype.getBoundingClientRect = jest.fn(() => ({
+    Element.prototype.getBoundingClientRect = vi.fn(() => ({
       top: 0,
       left: 0,
       right: 100,
@@ -36,7 +35,7 @@ describe("Scrollbar", () => {
   afterEach(() => {
     // Restore original implementations
     window.ResizeObserver = originalResizeObserver;
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 
   it("renders children correctly", () => {
@@ -111,7 +110,7 @@ describe("Scrollbar", () => {
 
   it("handles track click event", () => {
     // Mock scrollTo
-    const scrollToMock = jest.fn();
+    const scrollToMock = vi.fn();
     Element.prototype.scrollTo = scrollToMock;
 
     const { container } = render(
@@ -160,8 +159,8 @@ describe("Scrollbar", () => {
   });
 
   it("adds and removes event listeners", () => {
-    const addEventListenerSpy = jest.spyOn(Element.prototype, "addEventListener");
-    const removeEventListenerSpy = jest.spyOn(Element.prototype, "removeEventListener");
+    const addEventListenerSpy = vi.spyOn(Element.prototype, "addEventListener");
+    const removeEventListenerSpy = vi.spyOn(Element.prototype, "removeEventListener");
 
     const { unmount } = render(
       <Scrollbar>
@@ -178,8 +177,8 @@ describe("Scrollbar", () => {
   });
 
   it("adds and removes document event listeners", () => {
-    const addEventListenerSpy = jest.spyOn(document, "addEventListener");
-    const removeEventListenerSpy = jest.spyOn(document, "removeEventListener");
+    const addEventListenerSpy = vi.spyOn(document, "addEventListener");
+    const removeEventListenerSpy = vi.spyOn(document, "removeEventListener");
 
     const { unmount } = render(
       <Scrollbar>
@@ -203,8 +202,8 @@ describe("Scrollbar", () => {
     // Setup mocks for scrollTop testing
     Object.defineProperty(HTMLElement.prototype, "scrollTop", {
       configurable: true,
-      get: jest.fn(() => 0),
-      set: jest.fn(),
+      get: vi.fn(() => 0),
+      set: vi.fn(),
     });
 
     Object.defineProperty(HTMLElement.prototype, "scrollHeight", {
@@ -298,7 +297,7 @@ describe("Scrollbar", () => {
     // Set up spy to check if style.top is changed
     if (thumb) {
       const htmlThumb = thumb as HTMLElement;
-      const styleSpy = jest.spyOn(htmlThumb.style, "top", "set");
+      const styleSpy = vi.spyOn(htmlThumb.style, "top", "set");
 
       // Trigger scroll event to test handleThumbPosition
       if (content) {
@@ -312,7 +311,7 @@ describe("Scrollbar", () => {
 
   it("correctly handles ResizeObserver", () => {
     // Spy on handleResize being called by ResizeObserver
-    const _handleResizeSpy = jest.spyOn(React, "useCallback").mockImplementation((fn, _deps) => {
+    const _handleResizeSpy = vi.spyOn(React, "useCallback").mockImplementation((fn, _deps) => {
       return fn;
     });
 

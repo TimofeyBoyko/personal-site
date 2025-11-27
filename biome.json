@@ -217,7 +217,7 @@
       "arrowParentheses": "always"
     },
     "globals": [
-      "jest",
+      "vi",
       "describe",
       "it",
       "expect",

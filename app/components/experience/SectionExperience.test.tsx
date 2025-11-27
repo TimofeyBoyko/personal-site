@@ -1,11 +1,10 @@
 import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
 
 import type { GroupProps } from "@/components/group/Group.types";
 import type { SectionProps } from "@/components/section/Section.types";
 
 // Mock the Section component
-jest.mock("@/components/section", () => ({
+vi.mock("@/components/section", () => ({
   __esModule: true,
   default: ({ id, headerName, isLast, children }: SectionProps) => (
     <div
@@ -20,7 +19,7 @@ jest.mock("@/components/section", () => ({
 }));
 
 // Mock the Group component
-jest.mock("@/components/group", () => ({
+vi.mock("@/components/group", () => ({
   __esModule: true,
   default: ({
     headerText,
@@ -46,36 +45,22 @@ jest.mock("@/components/group", () => ({
 }));
 
 // Mock the experience data
-jest.mock(
-  "@/data/experience.json",
-  () => ({
+vi.mock("@/data/experience.json", () => ({
+  default: {
     items: [
       {
+        date: "2021 — Present",
+        role: "Frontend Developer",
         company: "ONLYOFFICE",
-        position: "Frontend Developer",
+        "sub-roles": ["Main Developer"],
         link: "https://www.onlyoffice.com",
-        dates: "2021 — Present",
-        subRoles: ["Main Developer"],
         description:
           "Build front-end of a cloud-based document management and collaboration solution that allows users to create, edit, and share documents in real time. Implemented OAuth2 protocol for secure authentication and developed an AI chat integration. Share skills and knowledge about project with colleagues. Also create Plugin SDK, that allow integrate third-party functionality into DocSpace.",
-        tags: [
-          "JavaScript",
-          "TypeScript",
-          "HTML & SCSS",
-          "React",
-          "NextJS",
-          "Styled Components",
-          "Mobx",
-          "Jest",
-          "React Testing Library",
-          "Webpack",
-          "Nodejs",
-        ],
+        tags: ["JavaScript", "TypeScript", "React"],
       },
     ],
-  }),
-  { virtual: true },
-);
+  },
+}));
 
 import SectionExperience from "./index";
 import { sectionExperienceStyles } from "./SectionExperience.styles";

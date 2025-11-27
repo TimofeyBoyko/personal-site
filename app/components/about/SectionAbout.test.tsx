@@ -1,10 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
 
 import type { SectionProps } from "@/components/section/Section.types";
 
 // Mock the Section component
-jest.mock("@/components/section", () => ({
+vi.mock("@/components/section", () => ({
   __esModule: true,
   default: ({ id, headerName, isLast, children }: SectionProps) => (
     <div
@@ -19,21 +18,16 @@ jest.mock("@/components/section", () => ({
 }));
 
 // Mock the actual implementation instead of mocking parseTextToJSX
-jest.mock(
-  "@/utils",
-  () => ({
-    parseTextToJSX: (text: string) => {
-      // Return real paragraphs for testing instead of a simple prefix
-      return text;
-    },
-  }),
-  { virtual: true },
-);
+vi.mock("@/utils", () => ({
+  parseTextToJSX: (text: string) => {
+    // Return real paragraphs for testing instead of a simple prefix
+    return text;
+  },
+}));
 
 // Mock the about data with real structure
-jest.mock(
-  "@/data/about.json",
-  () => ({
+vi.mock("@/data/about.json", () => ({
+  default: {
     items: [
       {
         text: "Even as a teenager, I was interested in computers",
@@ -48,9 +42,8 @@ jest.mock(
         links: [],
       },
     ],
-  }),
-  { virtual: true },
-);
+  },
+}));
 
 import SectionAbout from "./index";
 import { sectionAboutStyles } from "./SectionAbout.styles";

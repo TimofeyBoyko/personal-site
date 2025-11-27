@@ -1,9 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
 
 // Mock react-device-detect with a setter so we can toggle isMobile
 let isMobileMock = false;
-jest.mock("react-device-detect", () => ({
+vi.mock("react-device-detect", () => ({
   get isMobile() {
     return isMobileMock;
   },
@@ -17,12 +16,12 @@ import Cursor from "./index";
 
 describe("Cursor", () => {
   // Mock the window.addEventListener
-  const addEventListenerSpy = jest.spyOn(window, "addEventListener");
-  const removeEventListenerSpy = jest.spyOn(window, "removeEventListener");
+  const addEventListenerSpy = vi.spyOn(window, "addEventListener");
+  const removeEventListenerSpy = vi.spyOn(window, "removeEventListener");
 
   beforeEach(() => {
     // Clear all mocks before each test
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("renders the cursor div when not on mobile", () => {
@@ -79,7 +78,7 @@ describe("Cursor", () => {
 
   it("uses the background style from cursorStyles", () => {
     // Create a mock implementation that we can access
-    const mockGetBackgroundStyle = jest.fn().mockReturnValue("mocked-background-style");
+    const mockGetBackgroundStyle = vi.fn().mockReturnValue("mocked-background-style");
     const originalGetBackgroundStyle = cursorStyles.getBackgroundStyle;
 
     // Replace the method with our mock before rendering
@@ -91,11 +90,13 @@ describe("Cursor", () => {
     };
 
     const originalAddEventListener = window.addEventListener;
-    window.addEventListener = jest.fn((event: string, callback) => {
-      if (event === "mousemove") {
-        capturedCallback = callback as (event: MouseEvent) => void;
-      }
-    });
+    window.addEventListener = vi.fn(
+      (event: string, callback: EventListenerOrEventListenerObject) => {
+        if (event === "mousemove") {
+          capturedCallback = callback as (event: MouseEvent) => void;
+        }
+      },
+    );
 
     render(<Cursor />);
 
